@@ -6,7 +6,7 @@
 class Polygon : public Shape {
 public:
     Polygon();
-    void draw();
+    void draw(QPixmap *);
 };
 
 #endif // POLYGON_H

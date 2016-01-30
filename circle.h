@@ -11,9 +11,10 @@ private:
     int radius;
     QPainter *painter;
 public:
-    Circle(QPoint);
-    Circle(QPoint, int);
-    void setRadius(int);
+    //Circle(QPoint);
+    Circle(QPoint, int, int);
+    void setWidth(int);
+    void setHeight(int);
     void draw(QPixmap *);
 };
 

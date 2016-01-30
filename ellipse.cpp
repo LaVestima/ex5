@@ -5,6 +5,6 @@ Ellipse::Ellipse()
 
 }
 
-void Ellipse::draw() {
+void Ellipse::draw(QPixmap *pixmap) {
 
 }

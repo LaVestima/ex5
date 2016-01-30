@@ -6,7 +6,7 @@
 class Ellipse : public Shape {
 public:
     Ellipse();
-    void draw();
+    void draw(QPixmap *);
 };
 
 #endif // ELLIPSE_H

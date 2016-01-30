@@ -6,7 +6,7 @@
 class Rectangle : public Shape {
 public:
     Rectangle();
-    void draw();
+    void draw(QPixmap *);
 };
 
 #endif // RECTANGLE_H

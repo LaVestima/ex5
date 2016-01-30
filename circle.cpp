@@ -1,14 +1,18 @@
 #include "circle.h"
 
-Circle::Circle(QPoint p, int shapeRadius) {
+Circle::Circle(QPoint p, int shapeWidth, int shapeHeight) {
     p0 = p;
-    radius = shapeRadius;
+    radius = shapeWidth;
 
     painter = new QPainter;
 }
 
-void Circle::setRadius(int r) {
+void Circle::setWidth(int r) {
     radius = r;
+}
+
+void Circle::setHeight(int shapeHeight) {
+
 }
 
 void Circle::draw(QPixmap *pixmap) {

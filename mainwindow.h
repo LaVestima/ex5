@@ -22,10 +22,10 @@ class MainWindow : public QMainWindow {
 private:
     Ui::MainWindow *ui;
     QPixmap *pixmap;
-    QList<Shape> shapeList;
-    QList<Circle> circleList;
-    QList<Square> squareList;
-    QList<Triangle> triangleList;
+    QList<Shape*> shapeList;
+    //QList<Circle> circleList;
+    //QList<Square> squareList;
+    //QList<Triangle> triangleList;
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -39,7 +39,6 @@ private slots:
     void on_triangleComboBox_currentIndexChanged(int index);
     void on_deleteSelectedPushButton_clicked();
     void on_deleteAllPushButton_clicked();
-    void on_radioButton_0_toggled(bool checked);
     void on_editSelectedPushButton_clicked();
 };
 

@@ -5,6 +5,6 @@ Rectangle::Rectangle()
 
 }
 
-void Rectangle::draw() {
+void Rectangle::draw(QPixmap *pixmap) {
 
 }

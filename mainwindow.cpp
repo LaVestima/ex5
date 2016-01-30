@@ -27,19 +27,19 @@ bool MainWindow::eventFilter(QObject *object, QEvent *event) { // Double click e
 
                     switch(i) {
                     case 0: // Circle
-                        circleList.push_back(Circle(mouseEvent->pos(), shapeWidth));
-                        ui->circleComboBox->addItem(QString::number(circleList.count()-1));
+                        shapeList.push_back(new Circle(mouseEvent->pos(), shapeWidth, shapeHeight));
+                        ui->circleComboBox->addItem(QString::number(shapeList.count()-1));
                         ui->circleComboBox->setCurrentIndex(-1);
                         break;
                     case 1: // Rectangle
-                        squareList.push_back(Square(mouseEvent->pos(), shapeWidth, shapeHeight));
-                        ui->squareComboBox->addItem(QString::number(squareList.count()-1));
-                        ui->squareComboBox->setCurrentIndex(-1);
+                        shapeList.push_back(new Square(mouseEvent->pos(), shapeWidth, shapeHeight));
+                        ui->circleComboBox->addItem(QString::number(shapeList.count()-1));
+                        ui->circleComboBox->setCurrentIndex(-1);
                         break;
                     case 2: // Triangle
-                        triangleList.push_back(Triangle(mouseEvent->pos(), shapeWidth, shapeHeight));
-                        ui->triangleComboBox->addItem(QString::number(triangleList.count()-1));
-                        ui->triangleComboBox->setCurrentIndex(-1);
+                        shapeList.push_back(new Triangle(mouseEvent->pos(), shapeWidth, shapeHeight));
+                        ui->circleComboBox->addItem(QString::number(shapeList.count()-1));
+                        ui->circleComboBox->setCurrentIndex(-1);
                         break;
                     }
                 }
@@ -54,27 +54,27 @@ void MainWindow::on_drawPushButton_clicked() {
     pixmap->fill(Qt::white);
 
     if (ui->checkBox->isChecked()) {
-        for(int i = 0; i < circleList.count(); i++) {
-            circleList[i].draw(pixmap);
+        for(int i = 0; i < shapeList.count(); i++) {
+            shapeList[i]->draw(pixmap);
         }
-        for(int i = 0; i < squareList.count(); i++) {
-            squareList[i].draw(pixmap);
-        }
-        for(int i = 0; i < triangleList.count(); i++) {
-            triangleList[i].draw(pixmap);
-        }
+//        for(int i = 0; i < squareList.count(); i++) {
+//            squareList[i].draw(pixmap);
+//        }
+//        for(int i = 0; i < triangleList.count(); i++) {
+//            triangleList[i].draw(pixmap);
+//        }
     }
     else {
         int shapeNumber = -1;
         if ((shapeNumber = ui->circleComboBox->currentIndex()) >= 0) {
-            circleList[shapeNumber].draw(pixmap);
+            shapeList[shapeNumber]->draw(pixmap);
         }
-        else if ((shapeNumber = ui->squareComboBox->currentIndex()) >= 0) {
-            squareList[shapeNumber].draw(pixmap);
-        }
-        else if ((shapeNumber = ui->triangleComboBox->currentIndex()) >= 0) {
-            triangleList[shapeNumber].draw(pixmap);
-        }
+//        else if ((shapeNumber = ui->squareComboBox->currentIndex()) >= 0) {
+//            squareList[shapeNumber].draw(pixmap);
+//        }
+//        else if ((shapeNumber = ui->triangleComboBox->currentIndex()) >= 0) {
+//            triangleList[shapeNumber].draw(pixmap);
+//        }
 
     }
 
@@ -105,32 +105,32 @@ void MainWindow::on_triangleComboBox_currentIndexChanged(int index) {
 void MainWindow::on_deleteSelectedPushButton_clicked() {
     int shapeNumber = -1;
     if ((shapeNumber = ui->circleComboBox->currentIndex()) >= 0) {
-        circleList.removeAt(shapeNumber);
-        ui->circleComboBox->removeItem(circleList.count());
+        shapeList.removeAt(shapeNumber);
+        ui->circleComboBox->removeItem(shapeList.count());
     }
-    else if ((shapeNumber = ui->squareComboBox->currentIndex()) >= 0) {
-        squareList.removeAt(shapeNumber);
-        ui->squareComboBox->removeItem(squareList.count());
-    }
-    else if ((shapeNumber = ui->triangleComboBox->currentIndex()) >= 0) {
-        triangleList.removeAt(shapeNumber);
-        ui->triangleComboBox->removeItem(triangleList.count());
-    }
+//    else if ((shapeNumber = ui->squareComboBox->currentIndex()) >= 0) {
+//        squareList.removeAt(shapeNumber);
+//        ui->squareComboBox->removeItem(squareList.count());
+//    }
+//    else if ((shapeNumber = ui->triangleComboBox->currentIndex()) >= 0) {
+//        triangleList.removeAt(shapeNumber);
+//        ui->triangleComboBox->removeItem(triangleList.count());
+//    }
 }
 
 void MainWindow::on_deleteAllPushButton_clicked() {
-    for(int i = 0; i < circleList.count(); i++) {
+    for(int i = 0; i < shapeList.count(); i++) {
         ui->circleComboBox->removeItem(0);
     }
-    circleList.clear();
-    for(int i = 0; i < squareList.count(); i++) {
-        ui->squareComboBox->removeItem(0);
-    }
-    squareList.clear();
-    for(int i = 0; i < triangleList.count(); i++) {
-        ui->triangleComboBox->removeItem(0);
-    }
-    triangleList.clear();
+    shapeList.clear();
+//    for(int i = 0; i < squareList.count(); i++) {
+//        ui->squareComboBox->removeItem(0);
+//    }
+//    squareList.clear();
+//    for(int i = 0; i < triangleList.count(); i++) {
+//        ui->triangleComboBox->removeItem(0);
+//    }
+//    triangleList.clear();
 }
 
 void MainWindow::on_editSelectedPushButton_clicked() {
@@ -139,21 +139,22 @@ void MainWindow::on_editSelectedPushButton_clicked() {
     int shapeHeight = ui->heightLineEdit->text().toDouble();
 
     if ((shapeNumber = ui->circleComboBox->currentIndex()) >= 0) {
-
-        circleList[shapeNumber].setRadius(shapeWidth);
+        //shapeList[shapeNumber].setRadius(shapeWidth);
+        shapeList[shapeNumber]->setWidth(shapeWidth);
+        shapeList[shapeNumber]->setHeight(shapeHeight);
         //circleList.removeAt(shapeNumber);
         //ui->circleComboBox->removeItem(circleList.count());
     }
-    else if ((shapeNumber = ui->squareComboBox->currentIndex()) >= 0) {
-        squareList[shapeNumber].setWidth(shapeWidth);
-        squareList[shapeNumber].setHeight(shapeHeight);
-        //squareList.removeAt(shapeNumber);
-        //ui->squareComboBox->removeItem(squareList.count());
-    }
-    else if ((shapeNumber = ui->triangleComboBox->currentIndex()) >= 0) {
-        triangleList[shapeNumber].setWidth(shapeWidth);
-        triangleList[shapeNumber].setHeight(shapeHeight);
-        //triangleList.removeAt(shapeNumber);
-        //ui->triangleComboBox->removeItem(triangleList.count());
-    }
+//    else if ((shapeNumber = ui->squareComboBox->currentIndex()) >= 0) {
+//        squareList[shapeNumber].setWidth(shapeWidth);
+//        squareList[shapeNumber].setHeight(shapeHeight);
+//        //squareList.removeAt(shapeNumber);
+//        //ui->squareComboBox->removeItem(squareList.count());
+//    }
+//    else if ((shapeNumber = ui->triangleComboBox->currentIndex()) >= 0) {
+//        triangleList[shapeNumber].setWidth(shapeWidth);
+//        triangleList[shapeNumber].setHeight(shapeHeight);
+//        //triangleList.removeAt(shapeNumber);
+//        //ui->triangleComboBox->removeItem(triangleList.count());
+//    }
 }

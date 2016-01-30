@@ -27,7 +27,7 @@
      <item row="0" column="1">
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Square</string>
+        <string/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -37,7 +37,7 @@
      <item row="0" column="2">
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Triangle</string>
+        <string/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -47,7 +47,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Circle</string>
+        <string>Shapes</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -62,10 +62,18 @@
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QComboBox" name="triangleComboBox"/>
+      <widget class="QComboBox" name="triangleComboBox">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QComboBox" name="squareComboBox"/>
+      <widget class="QComboBox" name="squareComboBox">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
      <item row="2" column="1">
       <widget class="QPushButton" name="drawPushButton">
@@ -239,7 +247,7 @@
      <x>0</x>
      <y>0</y>
      <width>1179</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -5,6 +5,6 @@ Polygon::Polygon()
 
 }
 
-void Polygon::draw() {
+void Polygon::draw(QPixmap *pixmap) {
 
 }
